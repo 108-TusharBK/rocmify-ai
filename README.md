@@ -31,6 +31,7 @@ emoji: 🚀
 colorFrom: blue
 colorTo: red
 sdk: docker
+python_version: "3.10.12"
 pinned: false
 ---
 
