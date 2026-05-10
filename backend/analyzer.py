@@ -5,10 +5,10 @@ PATTERNS = {
         "severity": "high",
 
         "issue":
-        "TensorRT dependency detected",
+        "torch.cuda dependency detected",
 
         "recommendation":
-        "Use ONNX Runtime or vLLM on ROCm.",
+        "Use torch.version.hip or build-time flags on ROCm.",
 
         "pattern": r"\btensorrt\b"
     },
