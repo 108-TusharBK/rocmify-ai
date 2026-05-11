@@ -4,7 +4,7 @@ import requests
 
 API_URL = (
     "https://api-inference.huggingface.co/models/"
-    "microsoft/Phi-3-mini-4k-instruct"
+    "google/flan-t5-large"
 )
 
 
@@ -59,7 +59,8 @@ explaining:
             timeout=60,
         )
 
-        response.raise_for_status()
+        if response.status_code != 200:
+            return None
 
         result = response.json()
 
