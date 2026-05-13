@@ -6,6 +6,8 @@ import os
 import zipfile
 from io import BytesIO
 
+st.write("XSRF:", st.get_option("server.enableXsrfProtection"))
+st.write("CORS:", st.get_option("server.enableCORS"))
 
 sys.path.append(
     os.path.abspath(
