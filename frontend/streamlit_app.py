@@ -301,8 +301,10 @@ if uploaded_file:
 
         if llm_summary:
             summary = llm_summary
+            st.success("🤖 AI-generated summary")
             st.info(llm_summary)
         else:
+            st.warning("Using rule-based summary")
             st.info(summary)
 
         st.subheader("Suggested ROCm Replacements")

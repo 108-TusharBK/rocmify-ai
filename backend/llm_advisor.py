@@ -64,12 +64,20 @@ explaining:
 
         result = response.json()
 
-        if isinstance(result, list):
-            return result[0]["generated_text"].replace(
-                prompt, ""
+        if isinstance(result, list) and result:
+            generated = result[0].get("generated_text", "")
+            return generated.replace(prompt, "").strip()
+
+        if isinstance(result, dict):
+            if "generated_text" in result:
+                return result["generated_text"].replace(
+            prompt, ""
             ).strip()
 
         return None
 
-    except Exception:
+        
+
+    except Exception as e:
+        print("LLM Error:", e)
         return None
