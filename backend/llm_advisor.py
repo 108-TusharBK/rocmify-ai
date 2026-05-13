@@ -49,6 +49,9 @@ explaining:
             "max_new_tokens": 250,
             "temperature": 0.2,
         },
+        "options": {
+            "wait_for_model": True
+        },
     }
 
     try:

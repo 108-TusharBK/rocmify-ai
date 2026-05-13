@@ -135,30 +135,50 @@ def generate_summary(score, effort, findings):
 
 def generate_markdown_report(
     filename,
+    files_analyzed,
     score,
     effort,
     findings,
-    summary
+    summary,
+    counts,
+    replacement_rows,
 ):
     lines = [
-        f"# ROCmify AI Report",
+        "# ROCmify AI Report",
         "",
         f"**File:** {filename}",
+        f"**Files Analyzed:** {files_analyzed}",
         f"**ROCm Readiness Score:** {score}/100",
         f"**Estimated Migration Effort:** {effort}",
         f"**Total Issues:** {len(findings)}",
+        "",
+        "## Severity Breakdown",
+        "",
+        f"- High: {counts['high']}",
+        f"- Medium: {counts['medium']}",
+        f"- Warning: {counts['warning']}",
         "",
         "## Executive Summary",
         "",
         summary,
         "",
-        "## Suggested Migration Plan",
-        "",
-        generate_migration_plan(findings),
-        "",
-        "## Findings",
-        "",
     ]
+
+    if replacement_rows:
+        lines.extend([
+            "### Suggested ROCm Replacements",
+            "",
+            "| NVIDIA Component | ROCm Alternative |",
+            "|------------------|------------------|",
+        ])
+
+        for row in replacement_rows:
+            lines.append(
+                f"| {row['NVIDIA Component']} |"
+                f"{row['ROCm Alternative']} |"
+            )
+        
+        lines.append("")
 
     for item in findings:
         lines.extend([
@@ -391,10 +411,13 @@ if uploaded_file:
 
         markdown_report = generate_markdown_report(
             uploaded_file.name,
+            analyzed_files,
             score,
             effort,
             findings,
-            summary          
+            summary,
+            counts,
+            replacement_rows,  
         )
 
         st.download_button(
