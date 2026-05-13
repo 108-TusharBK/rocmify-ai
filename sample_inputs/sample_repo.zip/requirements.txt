@@ -1,0 +1,4 @@
+torch
+cupy
+tensorrt
+tensorflow-gpu
