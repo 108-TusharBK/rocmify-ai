@@ -8,9 +8,9 @@ PATTERNS = {
         "torch.cuda dependency detected",
 
         "recommendation":
-        "Use torch.version.hip or build-time flags on ROCm.",
+        "Use ROCm-enabled PyTorch paths.",
 
-        "pattern": r"\btensorrt\b"
+        "pattern": r"torch\.cuda"
     },
 
 

@@ -6,8 +6,8 @@ import os
 import zipfile
 from io import BytesIO
 
-st.write("XSRF:", st.get_option("server.enableXsrfProtection"))
-st.write("CORS:", st.get_option("server.enableCORS"))
+#st.write("XSRF:", st.get_option("server.enableXsrfProtection"))
+#st.write("CORS:", st.get_option("server.enableCORS"))
 
 sys.path.append(
     os.path.abspath(
@@ -316,9 +316,9 @@ if uploaded_file:
 
         st.subheader("Suggested Migration Plan")
 
-        Migration_plan = generate_migration_plan(findings)
+        migration_plan = generate_migration_plan(findings)
 
-        st.markdown(Migration_plan)
+        st.markdown(migration_plan)
 
         for item in findings:
 
